@@ -27,6 +27,7 @@ const Home = () => {
     ]
 
     const [ willBeBoughtItem, setWillBeBoughtItem] = useState([])
+    const [ refresh, setRefresh ] = useState();
     const addFunction = (id,howMany,namaMakanan,harga) =>{        
         console.log(id,howMany,namaMakanan,harga)
         const addItem = () => {
@@ -48,6 +49,10 @@ const Home = () => {
         const addingCondition = howMany > 0 ? addItem() : doNotAdd()
         setWillBeBoughtItem(addingCondition)
         console.log(willBeBoughtItem)
+        refreshFunction()
+    }
+    const refreshFunction = () => {
+        setRefresh({})
     }
     return (
         <div className="App">
