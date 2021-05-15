@@ -30,18 +30,16 @@ const Home = () => {
     const addFunction = (id,howMany,namaMakanan,harga) =>{        
         console.log(id,howMany,namaMakanan,harga)
         const addItem = () => {
-            const newWillBeBoughtItem = willBeBoughtItem
-            newWillBeBoughtItem.push({
-                id:id,
+            const newWillBeBoughtItem = [...willBeBoughtItem, {id:id,
                 nama:namaMakanan,
                 harga:harga,
-                pcs:howMany
-            })
+                pcs:howMany}]
+            
             return newWillBeBoughtItem
         }
 
         const doNotAdd = () => {
-            const newWillBeBoughtItem = willBeBoughtItem
+            const newWillBeBoughtItem = [...willBeBoughtItem]
             return newWillBeBoughtItem
         }
 
