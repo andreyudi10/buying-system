@@ -2,42 +2,22 @@ import React from 'react'
 import styles from './SidePage.module.css'
 import SidePageList from './SidePageList'
 
-const SidePage = () => {
-    const array = [
-        {
-            name:"berger",
-            harga:2000
-        },
-        {
-            name:"berger",
-            harga:2000
-        },
-        {
-            name:"berger",
-            harga:2000
-        },
-        {
-            name:"berger",
-            harga:2000
-        },
-    ]
+const SidePage = ({ data, addFunction}) => {
 
-    // const mappedBody = (arr) => (
-        
-    // )
     return (
         <div className={styles.container}>
            <h2 className={styles.title}>
                Side Page Items               
            </h2> 
-           <ul>
-               {array.map((arr) =>      
+           <ul >
+               {data.map((arr) =>      
                                 <SidePageList 
                                     nama={arr.name}
                                     harga={arr.harga}
+                                    id={arr.id}
+                                    addFunction={addFunction}
                                 />
             )}
-          
            </ul>
         </div>
     )
