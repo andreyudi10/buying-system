@@ -1,8 +1,10 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect } from 'react'
 import SidePage from '../components/SidePage'
 import MainPage from '../components/MainPage'
 import DataPembeli from '../components/DataPembeli'
+import { useHistory} from 'react-router-dom'
 const Home = () => {
+    const history = useHistory()
       const data = [
         {
             name:"Rocket Burger",
@@ -27,6 +29,10 @@ const Home = () => {
     ]
 
     const [ willBeBoughtItem, setWillBeBoughtItem] = useState([])
+    const [ angka,setAngka] = useState(0)
+    useEffect(() => {
+        const newWillBeBoughtItem = JSON.parse(localStorage.getItem('willBought'))
+    }, [])
     const addFunction = (id,howMany,namaMakanan,harga) =>{        
         console.log(id,howMany,namaMakanan,harga)
         const addItem = () => {
@@ -47,8 +53,19 @@ const Home = () => {
 
         const addingCondition = howMany > 0 ? addItem() : doNotAdd()
         setWillBeBoughtItem(addingCondition)
-        console.log(willBeBoughtItem)
+        console.log(willBeBoughtItem )
+        localStorage.setItem("willBought",JSON.stringify(addingCondition))
+        setAngka(angka+1)
+        angka%2 !== 0 ? changePage() : changePage2()
     }
+
+    const changePage = () =>{
+        history.push('/bought')
+    }
+    const changePage2 = () =>{
+        history.push('/')
+    }
+
     return (
         <div className="App">
             <SidePage data={data} addFunction={addFunction}/>
